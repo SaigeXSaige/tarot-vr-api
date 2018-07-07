@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/login', to: 'auth#create'
       get '/reauth', to: 'auth#show'
-      resources :users, except: [:index]
+      resources :users, except: :index
+      resources :cards, only: [:index, :show]
+      resources :readings, except: [:update]
     end
   end
 
