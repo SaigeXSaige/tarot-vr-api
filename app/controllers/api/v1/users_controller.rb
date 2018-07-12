@@ -15,7 +15,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    byebug
     if @user.update(user_params)
       render json: @user
     else 
