@@ -6,7 +6,7 @@ class Api::V1::UsersController < ApplicationController
     if @user.save
       render json: @user
     else 
-      render json: {error: 'invalid inputs'}
+      render json: {error: @user.errors}
     end
   end
 
@@ -15,10 +15,11 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
+    byebug
     if @user.update(user_params)
       render json: @user
     else 
-      render json: {error: 'Invalid inputs'}
+      render json: {error: @user.errors}
     end
   end
 
