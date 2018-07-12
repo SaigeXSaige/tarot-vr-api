@@ -28,9 +28,6 @@ class Api::V1::ReadingsController < ApplicationController
   def reading_params
     params.permit(:user_id, :date)
   end
-  # def reading_params
-  #   params.permit(:user_id, :date)
-  # end
 
   def set_reading
     @reading = Reading.find(params[:id])
