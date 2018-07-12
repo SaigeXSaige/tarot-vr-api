@@ -3,7 +3,11 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.save
+    if @user.save
+      render json: @user
+    else 
+      render json: {error: user.error}
+    end
   end
 
   def show
