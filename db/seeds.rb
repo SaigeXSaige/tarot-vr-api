@@ -11,3 +11,4 @@ def convert_hash(obj)
 end
 
 tarot_data.each { |card| Card.create(convert_hash(card))}
+

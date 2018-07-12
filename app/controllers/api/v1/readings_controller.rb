@@ -8,6 +8,11 @@ class Api::V1::ReadingsController < ApplicationController
 
   def create
     @reading = Reading.create(reading_params)
+    @reading_cards = params[:cards]
+
+    @reading_cards.each {|cardId| ReadingCard.create({reading_id: @reading.id, card_id: Card.find(cardId).id})}
+    
+
   end
 
   def show
@@ -23,6 +28,9 @@ class Api::V1::ReadingsController < ApplicationController
   def reading_params
     params.permit(:user_id, :date)
   end
+  # def reading_params
+  #   params.permit(:user_id, :date)
+  # end
 
   def set_reading
     @reading = Reading.find(params[:id])
