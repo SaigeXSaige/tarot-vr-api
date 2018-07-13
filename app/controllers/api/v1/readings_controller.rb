@@ -8,10 +8,10 @@ class Api::V1::ReadingsController < ApplicationController
 
   def create
     @reading = Reading.create(reading_params)
-    @reading_cards = params[:cards]
+    @reading_cards = params[:card_ids]
 
-    @reading_cards.each {|cardId| ReadingCard.create({reading_id: @reading.id, card_id: Card.find(cardId).id})}
-    
+    @reading_cards.each {|cardId| ReadingCard.create({reading_id: @reading.id, card_id: cardId})}
+
 
   end
 
