@@ -15,10 +15,11 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
+    
     if @user.update(user_params)
-      render json: @user
+      render json: {username: @user.username, id: @user.id, first_name: @user.first_name, last_name: @user.last_name, email: @user.email, readings: @user.readings.map {|reading| {reading_id: reading.id, cards: reading.cards} } }, status: 200
     else 
-      render json: {error: @user.errors}
+      render json: {error: @user.errors}, status: 401
     end
   end
 
@@ -29,7 +30,7 @@ class Api::V1::UsersController < ApplicationController
   private 
 
   def user_params
-    params.permit(:username, :password, :password_confirmation, :first_name, :last_name, :email)
+    params.permit(:username, :first_name, :last_name, :email)
   end
 
   def set_user
