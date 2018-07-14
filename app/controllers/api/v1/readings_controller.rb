@@ -20,6 +20,7 @@ class Api::V1::ReadingsController < ApplicationController
   end
 
   def destroy
+    @reading.reading_cards.destroy_all
     @reading.destroy
   end
 
