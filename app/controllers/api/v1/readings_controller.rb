@@ -1,5 +1,5 @@
 class Api::V1::ReadingsController < ApplicationController
-  before_action :set_reading, only: [:show, :destory]
+  before_action :set_reading, only: [:show, :destroy]
 
   def index
     @readings = Reading.all
